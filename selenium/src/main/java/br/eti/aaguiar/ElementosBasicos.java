@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class Aula25
+public class ElementosBasicos
 {
   private static WebDriver driver;
   
@@ -31,7 +31,7 @@ public class Aula25
   @AfterClass
   public static void endTestClass()
   {
-    //driver.quit();
+    driver.quit();
     System.out.println("Fim dos testes");
   }
   
@@ -142,7 +142,7 @@ public class Aula25
   }
   
   @Test
-  public void deveIntegarirAlertas()
+  public void deveIntegarirComAlertas()
   {
     System.out.println(".. Interagindo com alertas...");
     WebElement btn = driver.findElement(By.id("alert"));
@@ -157,4 +157,58 @@ public class Aula25
     
     driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
   }
+  
+  
+
+  @Test
+  public void deveIntegarirComConfirms()
+  {
+    System.out.println(".. Interagindo com confirms...");
+    WebElement btn = driver.findElement(By.id("confirm"));
+    
+    //abrir a caixa confirm 
+    btn.click();
+     
+    //criar elemento confirm 
+    Alert confirmar = driver.switchTo().alert();
+    //verificar o texto da caixa confirm
+    Assert.assertEquals("Confirm Simples", confirmar.getText());
+    
+    //clicar em cancelar
+    confirmar.dismiss();
+    Assert.assertEquals("Negado", confirmar.getText());
+    //fechar a caixa
+    confirmar.accept();
+    
+    //abrir o confirm de novo para o teste do OK
+    btn.click();
+    
+    //clicar em OK
+    confirmar.accept();
+    Assert.assertEquals("Confirmado", confirmar.getText());
+    //fechar a caixa
+    confirmar.accept();
+  }
+  
+  @Test
+  public void deveIntegarirComPrompts()
+  {
+    System.out.println(".. Interagindo com prompts...");
+    WebElement btn = driver.findElement(By.id("prompt"));
+    
+    //abrir a caixa prompt
+    btn.click();
+ 
+    //criar o elemento prompot
+    Alert prompt = driver.switchTo().alert();
+    Assert.assertEquals("Digite um numero", prompt.getText());
+    
+    prompt.sendKeys("5");    
+    prompt.accept();
+    
+    Assert.assertEquals("Era 5?", prompt.getText());
+    prompt.accept();
+ 
+  }
+  
 }
