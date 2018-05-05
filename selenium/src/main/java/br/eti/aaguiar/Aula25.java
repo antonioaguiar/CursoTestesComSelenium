@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,7 @@ public class Aula25
   @AfterClass
   public static void endTestClass()
   {
-    driver.quit();
+    //driver.quit();
     System.out.println("Fim dos testes");
   }
   
@@ -73,8 +74,7 @@ public class Aula25
     WebElement el = driver.findElement(By.id("elementosForm:escolaridade"));
     
     Select combo = new Select(el);
-    combo.deselectAll();
-    
+
     combo.selectByIndex(2);
     combo.selectByValue("superior");
     combo.selectByVisibleText("Mestrado");
@@ -89,8 +89,7 @@ public class Aula25
     WebElement el = driver.findElement(By.id("elementosForm:escolaridade"));
     
     Select combo = new Select(el);
-    combo.deselectAll();
-    
+
     List<WebElement> options = combo.getOptions();
     
     Assert.assertEquals(8L, options.size());
@@ -104,5 +103,58 @@ public class Aula25
       }
     }
     Assert.assertTrue(achou);
+  }
+  
+  @Test
+  public void deveIntegarirComBotoes()
+  {
+    System.out.println(".. Interagindo com botões");
+    WebElement el = driver.findElement(By.id("buttonSimple"));
+    el.click();
+    
+    Assert.assertEquals("Obrigado!", el.getAttribute("value"));
+  }
+  
+  @Test
+  public void deveIntegarirComLinks()
+  {
+    System.out.println(".. Interagindo com links...");
+    WebElement el = driver.findElement(By.linkText("Voltar"));
+    el.click();
+    
+    el = driver.findElement(By.id("resultado"));
+    
+    Assert.assertEquals("Voltou!", el.getText());
+  }
+  
+  @Test
+  public void deveIntegarirComTextos()
+  {
+    System.out.println(".. Interagindo com textos");
+    
+    WebElement el = driver.findElement(By.id("elementosForm")).findElement(By.tagName("h3"));
+    Assert.assertEquals("Campo de Treinamento", el.getText());
+    
+    WebElement el2 = driver.findElement(By.className("facilAchar"));
+    Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", el2.getText());
+    
+    
+  }
+  
+  @Test
+  public void deveIntegarirAlertas()
+  {
+    System.out.println(".. Interagindo com alertas...");
+    WebElement btn = driver.findElement(By.id("alert"));
+    btn.click();
+     
+    //criar elemento alerta 
+    Alert alerta = driver.switchTo().alert();
+    //verificar o texto do alerta
+    String texto = alerta.getText();
+    Assert.assertEquals("Alert Simples", texto);
+    alerta.accept();
+    
+    driver.findElement(By.id("elementosForm:nome")).sendKeys(texto);
   }
 }
