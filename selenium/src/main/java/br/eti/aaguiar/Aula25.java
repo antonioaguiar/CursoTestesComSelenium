@@ -1,7 +1,7 @@
 package br.eti.aaguiar;
 
-import java.io.PrintStream;
 import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -11,9 +11,6 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Navigation;
-import org.openqa.selenium.WebDriver.Options;
-import org.openqa.selenium.WebDriver.Window;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -76,6 +73,7 @@ public class Aula25
     WebElement el = driver.findElement(By.id("elementosForm:escolaridade"));
     
     Select combo = new Select(el);
+    combo.deselectAll();
     
     combo.selectByIndex(2);
     combo.selectByValue("superior");
@@ -91,6 +89,7 @@ public class Aula25
     WebElement el = driver.findElement(By.id("elementosForm:escolaridade"));
     
     Select combo = new Select(el);
+    combo.deselectAll();
     
     List<WebElement> options = combo.getOptions();
     
