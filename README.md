@@ -1,5 +1,4 @@
-# CursoTestesComSelenium
-Curso de Testes com uso do Selenium/WebDriver/JUnit4
+# Testes funcionais com Selenium WebDriver: Do básico ao GRID
 
 https://www.udemy.com/testes-funcionais-com-selenium-webdriver/
 
