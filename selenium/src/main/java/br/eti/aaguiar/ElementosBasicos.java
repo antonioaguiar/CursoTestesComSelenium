@@ -23,9 +23,8 @@ public class ElementosBasicos
   @BeforeClass
   public static void startTestClass()
   {
-    System.setProperty("webdriver.gecko.driver", "/home/aguiar/Downloads/drivers/geckodriver");
-    driver = new FirefoxDriver();
-    System.out.println("Iniciando os testes");
+	 driver  = DriverSingleton.getDriver(DriverSingleton.FIREFOX);
+     System.out.println("Iniciando os testes");
   }
   
   @AfterClass
