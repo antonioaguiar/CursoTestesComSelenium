@@ -22,7 +22,7 @@ public class DSL {
 		driver.navigate().to(url);
 	}
 
-	public void escreve(String id_campo, String texto) {
+	public void escrever(String id_campo, String texto) {
 		driver.findElement(By.id(id_campo)).sendKeys(texto);
 	}
 

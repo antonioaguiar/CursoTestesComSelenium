@@ -20,7 +20,7 @@ public class NovosTestesComDSL {
 
 	@BeforeClass
 	public static void iniciarClasseTeste() {
-		driver = DriverSingleton.getDriver(DriverSingleton.FIREFOX);
+		driver = DriverSingleton.getDriver(DriverSingleton.CHROME);
 		dsl = new DSL(driver);
 	}
 

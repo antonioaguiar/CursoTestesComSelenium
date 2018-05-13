@@ -24,6 +24,9 @@ public class DriverSingleton {
 			if (SO.indexOf("win") >= 0){
 				drivername +=".exe";
 			}
+			if (SO.indexOf("mac") >= 0){
+				drivername ="mac/"+drivername;
+			}			
 			String caminho = PATHDRIVER+drivername;
 			System.setProperty("webdriver.gecko.driver", caminho);
 			driver = new FirefoxDriver();
@@ -34,6 +37,10 @@ public class DriverSingleton {
 			if (SO.indexOf("win") >= 0){
 				drivername +=".exe";
 			}
+			if (SO.indexOf("mac") >= 0){
+				drivername ="mac/"+drivername;
+			}
+			
 			String caminho = PATHDRIVER+drivername;
 		    System.setProperty("webdriver.chrome.driver", caminho);
 			driver = new ChromeDriver();
