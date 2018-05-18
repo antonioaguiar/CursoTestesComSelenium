@@ -53,11 +53,11 @@ public class TestarRegrasCadastro {
 	public static Collection<Object[]>  getCollection(){
 		
 		return Arrays.asList(new Object[][] {
-			{"","","",Arrays.asList(),"","","","Nome Ã© obrigatÃ³rio!"},
-			{"Antonio","","",Arrays.asList(),"","","","Sobrenome  Ã© obrigatÃ³rio!"},
-			{"Antonio","Aguiar","",Arrays.asList(),"","","","Sexo Ã© obrigatÃ³rio!"},
-			{"Antonio","Aguiar","Masculino",Arrays.asList(),"","","","Nome Ã© obrigatÃ³rio!"},
-			{"Antonio","Aguiar","Masculino",Arrays.asList("Carne", "Vegetariano"),"","","","Tem certeza que Ã© vegetariano!"},
+			{"","","",Arrays.asList(),"","","","Nome é obrigatóio!"},
+			{"Antonio","","",Arrays.asList(),"","","","Sobrenome é obrigatório!"},
+			{"Antonio","Aguiar","",Arrays.asList(),"","","","Sexo é obrigatório!"},
+			{"Antonio","Aguiar","Masculino",Arrays.asList(),"","","","Nome é obrigatório!"},
+			{"Antonio","Aguiar","Masculino",Arrays.asList("Carne", "Vegetariano"),"","","","Tem certeza que é vegetariano?"},
 			{"Antonio","Aguiar","Masculino",Arrays.asList("Carne"),"","","","Ok"}
 
 		});
@@ -65,16 +65,14 @@ public class TestarRegrasCadastro {
  
 	@BeforeClass
 	public static void configurarClasse() {
-		//driver = DriverSingleton.getDriver(DriverSingleton.CHROME);	
+		//driver = DriverBrowser.getDriver(DriverBrowser.CHROME);	
 	}
-	
+ 
 	@Before
 	public void configurarTeste() {
-		//driver = DriverSingleton.getDriver(DriverSingleton.CHROME);	
-		String caminho = System.getProperty("user.dir")+"/src/main/resources/mac/chromedriver";
-		 System.setProperty("webdriver.chrome.driver", caminho);
-		driver = new ChromeDriver();
-		
+		DriverBrowser drv = new DriverBrowser();
+		driver = drv.getDriver(DriverBrowser.CHROME);	
+ 	
 		driver.manage().window().setSize(new Dimension(1200, 765));
 		driver.navigate().to("file:///" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");		
 		dsl = new DSL(driver);

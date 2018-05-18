@@ -20,7 +20,8 @@ public class NovosTestesComDSL {
 
 	@BeforeClass
 	public static void iniciarClasseTeste() {
-		driver = DriverSingleton.getDriver(DriverSingleton.CHROME);
+		DriverBrowser drv = new DriverBrowser();
+		driver = drv.getDriver(DriverBrowser.CHROME);	
 		dsl = new DSL(driver);
 	}
 

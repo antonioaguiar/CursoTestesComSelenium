@@ -22,7 +22,8 @@ public class ElementosBasicos
   @BeforeClass
   public static void startTestClass()
   {
-	 driver  = DriverSingleton.getDriver(DriverSingleton.FIREFOX);
+		DriverBrowser drv = new DriverBrowser();
+		driver = drv.getDriver(DriverBrowser.CHROME);	
      System.out.println("Iniciando os testes");
   }
   

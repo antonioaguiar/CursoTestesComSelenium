@@ -6,18 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class DriverSingleton {
+public class DriverBrowser {
 
 	public static String CHROME = "chrome"; 
 	public static String FIREFOX = "firefox";
 	private static WebDriver driver;
-	private static String SO = System.getProperty("os.name").toLowerCase();
-	private static String PATHDRIVER =  System.getProperty("user.dir");
 	
-	public static WebDriver getDriver(String browser) {
-		String drivername = "";
+	private static String SO = System.getProperty("os.name").toLowerCase();
+ 
+	public WebDriver getDriver(String browser) {
 		String sep = File.separator;
-		PATHDRIVER += sep+"src"+sep+"main"+sep+"resources"+sep;
+		String path =  System.getProperty("user.dir")+sep+"src"+sep+"main"+sep+"resources"+sep;
+		String drivername = "";	
+		String caminho = "";
 		
 		if (FIREFOX.equals(browser)) {
 			drivername = "geckodriver";
@@ -27,7 +28,7 @@ public class DriverSingleton {
 			if (SO.indexOf("mac") >= 0){
 				drivername ="mac/"+drivername;
 			}			
-			String caminho = PATHDRIVER+drivername;
+			caminho = path+drivername;
 			System.setProperty("webdriver.gecko.driver", caminho);
 			driver = new FirefoxDriver();
 		}
@@ -41,12 +42,11 @@ public class DriverSingleton {
 				drivername ="mac/"+drivername;
 			}
 			
-			String caminho = PATHDRIVER+drivername;
+			caminho = path+drivername;
 		    System.setProperty("webdriver.chrome.driver", caminho);
 			driver = new ChromeDriver();
 		}
 		
-
 		System.out.println("Iniciando os testes com: "+browser);
 		return driver;
 	}
