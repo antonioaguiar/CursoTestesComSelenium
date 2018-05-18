@@ -26,9 +26,22 @@ public class CampoTreinamentoPage {
 		dsl.marcarElementoRadio("elementosForm:sexo:1");
 	}
 	
+	public void setComidaCarne() {
+		dsl.marcarElementoCheckBox("elementosForm:comidaFavorita:0");
+	}
+
+	public void setComidaFrango() {
+		dsl.marcarElementoCheckBox("elementosForm:comidaFavorita:1");
+	}
+
 	public void setComidaPizza() {
 		dsl.marcarElementoCheckBox("elementosForm:comidaFavorita:2");
 	}
+	
+	public void setComidaVegetariano() {
+		dsl.marcarElementoCheckBox("elementosForm:comidaFavorita:3");
+	}
+
 	
 	public void setEscolaridade(String escolaridade) {
 		dsl.selecionarComboTexto("elementosForm:escolaridade", escolaridade);
